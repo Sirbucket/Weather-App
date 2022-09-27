@@ -1,0 +1,114 @@
+body {
+    background-color: steelblue;
+    font-family:calibri;
+    margin-left: 240px;
+}
+
+.title {
+    color:white;
+    margin-left: 32px;
+    width: 320px;
+}
+
+.subtitle {
+    color:white;
+    margin-left: 32px;
+}
+
+.new-weather {
+    padding: 1em;
+    margin-left: 32px;
+    width: 320px;
+    height: 230px;
+    background-color: lightsteelblue;
+    color:black;
+}
+
+.new-weather h2 {
+    font-size: 16px;
+    margin: 0;
+    border-bottom: 1px solid #aaa;
+}
+
+.new-weather label {
+    display: inline-block;
+    width: 18em;
+    text-align: justify;  
+    width: 120px;
+}
+
+.new-weather div{
+    margin-top: 12px;
+}
+
+.new-weather button {
+    background-color:white;
+}
+
+.new-weather button:hover {
+    transform:scale(1.1);
+    transition: all 500ms;
+}
+
+.new-weather button:active {
+    transform:scale(0.9);
+    transition: all 50ms;
+}
+
+.new-weather input:hover, input:active {
+    transform: scale(1.05);
+    transition: all 500ms;
+}
+
+.weather {
+    font-size: 18px;
+    color: #222;
+    grid-area : weather;
+}
+
+.weatherprint {
+    padding: 32px;
+    margin-top: 16px;
+    margin-left: 32px;
+    background-color: lightsteelblue;
+    width: 640px;
+}
+
+.weatherprint div {
+    background-color: #306597;
+    color: white;
+    padding: 1em;
+}
+
+.weatherprint div:hover, div:active {
+    transform: scale(1.05);
+    transition: all 1000ms;
+}
+
+.anchor {
+    color: #306597
+}
+
+.error {
+    width: 320px;
+    height: 230px;
+    background-color: lightsteelblue;
+    padding: 1em;
+    position: absolute;
+    left: 625px;
+    top: 8px;
+}
+
+.errordecorator {
+    background-color: #306597;
+    position:absolute;
+    left: 20px;
+    top: 16px;
+    width: 295px;
+    height: 214px;
+    padding: 8px;
+    text-align: center;
+}
+.errormsg {
+    font-size: 40px;
+}

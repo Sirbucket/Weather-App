@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            IACS Weather APP By William Tuleja
+        </title>
+    </head>
+    <body>
+        <div class="new-weather">
+            <h2>Get Weather</h2>
+            <a class = "anchor" href = "https://www.freemaptools.com/convert-us-zip-code-to-lat-lng.htm" target = "_blank"> 
+                Convert your zipcode to coordinates.
+            </a>
+            <div>
+                <label>
+                    Latitude: <input class="lat" type="number">
+                </label>
+            </div>
+            <div>
+                <label>
+                    Longitude: <input class="lon" type="number">
+                </label>
+            </div>
+            <div>
+                <label> 
+                    <button class="submit" type="button">
+                        Submit
+                    </button> 
+                </label>
+            </div>
+            <div>
+                <label> 
+                    <button class = "iacs" type = "button"> 
+                        Show weather at IACS! 
+                    </button> 
+                </label>
+            </div>
+        </div>
+        <div class = "error">
+            <div class = "errordecorator">
+                <h1 class = "errormsg"> Help will display here!</h1>
+            </div>
+        </div>
+        <template id="weatheritem">
+            <li class="weatheritem">
+                <label>
+                    <div class="weather"> 
+                        weather 
+                    </div>
+                </label>                
+            </li>  
+        </template>
+        <ol class = "weatherprint"> Weather Data Will Display Here!</ol>
+        <script type="module" src="/main.js"></script>
+    </body>
+</html>
