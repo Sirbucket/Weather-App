@@ -1,24 +1,55 @@
 import type {ForecastPeriod, ForecastResponse} from './weather';
 const itemTemplate = document.querySelector("#weatheritem"); //assign this.
+const errormsg: HTMLElement = document.querySelector(".error .errormsg");
 
 async function getWeatherData (lat: number, lon: number) {
-    const gridResponse = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
-    const gridJson = await gridResponse.json();
-    const forecastURL = gridJson.properties.forecast;
-    const forecastResponse = await fetch(forecastURL);
-    const forecastJson = await forecastResponse.json();
-    const forecastData = forecastJson.properties.periods;
+    try {
+        var gridResponse = await fetch(`https://api.weather.gov/points/${lat},${lon}`);   
+    } 
+    catch(err) {
+        return errormsg.textContent = `${err}`;
+    }
+    try {
+        var gridJson = await gridResponse.json();
+    }
+    catch(err) {
+        return errormsg.textContent = `${err}`;
+    }
+    try {
+        var forecastURL = gridJson.properties.forecast;
+    }
+    catch(err) {
+        return errormsg.textContent = "Please give a valid longitude and latitude!";
+    }
+    try {
+        var forecastResponse = await fetch(forecastURL);
+    }
+    catch(err) {
+        return errormsg.textContent = `${err}`;
+    }
+    try {
+        var forecastJson = await forecastResponse.json();    
+    }
+    catch(err) {
+        return errormsg.textContent = `${err}`; 
+    }
+    try {
+        var forecastData = forecastJson.properties.periods;   
+    }
+    catch(err) {
+        return errormsg.textContent = `${err}`;
+    }
 
     console.log('Forecast is:', forecastData); //Log for more interested users in console.
     
-    return forecastData //Bring data out of function into context.
+    return forecastData; //Bring data out of function into context.
 }
 
 function addWeather(data: ForecastPeriod, content: HTMLElement) {
     const fragment: DocumentFragment = document.createDocumentFragment();
     
     content.textContent = ""; //Make sure data cleans itself up.
-    
+    if (data[0].name === undefined) return
     for (let i: number = 0; i < 14; ++i) { //Only gives 14 data points anyway.
         const clone = itemTemplate.cloneNode(true);
         const newClone = clone.content.querySelector(".weatheritem");
@@ -44,7 +75,6 @@ function setupButtons() {
     const latInput: HTMLElement = document.querySelector(".new-weather .lat");
     const lonInput: HTMLElement = document.querySelector(".new-weather .lon");
     const content: HTMLElement = document.querySelector(".weatherprint"); //Setup all buttons and inputs.
-    const errormsg: HTMLElement = document.querySelector(".error .errormsg");
     
     addButton.addEventListener("click", async () => { //Async to ensure data is got before textContent needs to run.
         if ((latInput.value || lonInput.value) === '' || !(Number(latInput.value || lonInput.value))) {
@@ -54,7 +84,12 @@ function setupButtons() {
         const lat: number = Number(latInput.value);
         const lon: number = Number(lonInput.value);
 
-        const forecastData = await getWeatherData(lat, lon);//Request weather data.
+        try {
+            var forecastData: ForecastPeriod = await getWeatherData(lat, lon);//Request weather data.   
+        }
+        catch(err) {
+            return
+        }
         
         addWeather(forecastData, content); //Add data to screen.
         
