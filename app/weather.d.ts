@@ -9,8 +9,9 @@ export type ForecastPeriod = {
     windSpeed : string,
     windDirection : 'S'|'N'|'E'|'W'|'SE'|'SW'|'NE'|'NW',
     icon : string,
-    shortForecsat : string,
+    shortForecast : string,
     detailedForecast : string,
+    length : number,
 }
 
 export type ForecastResponse = {
@@ -18,5 +19,4 @@ export type ForecastResponse = {
         periods : ForecastPeriod[]
     }
 }
-
 //Types for convenience.
